@@ -63,6 +63,18 @@ func (w *WalletAdaptor) ValidAddress(req *wallet2.ValidAddressRequest) (*wallet2
 	panic("implement me")
 }
 
+func (w *WalletAdaptor) GetNonce(req *wallet2.NonceRequest) (*wallet2.NonceResponse, error) {
+	ret, err := w.getClient().WalletInfo(req.Address)
+	if err != nil {
+		return nil, err
+	}
+	return &wallet2.NonceResponse{
+		Code:  common.ReturnCode_SUCCESS,
+		Msg:   "get nonce success",
+		Nonce: strconv.FormatUint(ret.Seqno, 10),
+	}, nil
+}
+
 func (w *WalletAdaptor) GetBalance(req *wallet2.BalanceRequest) (*wallet2.BalanceResponse, error) {
 	api := w.getClient().api
 	block, err := api.CurrentMasterchainInfo(context.Background())

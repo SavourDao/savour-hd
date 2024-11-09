@@ -147,7 +147,8 @@ fullnode:
       - rpc_url: 'https://rest-mainnet.onflow.org/v1'
   ton:
     rpcs:
-      - rpc_url: 'https://toncenter.com/api/v3'
+      - rpc_url: 'https://ton.org/global.config.json'
+    tp_api_url: 'https://toncenter.com/api/v3'
 
   ar:
     rpcs:
